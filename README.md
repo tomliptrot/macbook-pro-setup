@@ -57,8 +57,25 @@ brew cask install spectacle
 
 #type emoticons easily everywhere
 brew cask install rocket
-```
 
+#graphics for R
+brew cask install xquartz
+#R
+brew install r
+
+#Rstudio
+brew cask install --appdir=/Applications rstudio
+
+#Python3
+brew install python3
+python3 -m pip install --upgrade pip
+
+#Jupyter
+python3 -m pip install jupyter
+
+#Jekyll
+gem install --user-install bundler jekyll
+```
 ## Install ZSH & co, *the best shell suite for devs [#mustHave](https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet)*
 
 ```bash
