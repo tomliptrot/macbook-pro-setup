@@ -40,42 +40,20 @@ brew cask install iterm2
 #customizable editor
 brew cask install atom
 
-#IDE for web dev
-brew cask install webstorm
-
 #to keep in touch with your team
 brew cask install slack
 
 #best web dev browser ^^
 brew cask install google-chrome 
 
-#replace spotlight with alfred
-brew cask install alfred
+#VS code 
+brew cask install visual-studio-code
 
-#manage windows with keyboard shortcuts
-brew cask install spectacle
+brew cask install karabiner-elements
 
-#type emoticons easily everywhere
-brew cask install rocket
-
-#graphics for R
-brew cask install xquartz
-#R
-brew install r
-
-#Rstudio
-brew cask install --appdir=/Applications rstudio
-
-#Python3
-brew install python3
-python3 -m pip install --upgrade pip
-
-#Jupyter
-python3 -m pip install jupyter
-
-#Jekyll
-gem install --user-install bundler jekyll
+brew cask install clipy
 ```
+
 ## Install ZSH & co, *the best shell suite for devs [#mustHave](https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet)*
 
 ```bash
@@ -94,9 +72,46 @@ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh
 ```bash
 plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting zsh-autosuggestions)
 
-ZSH_THEME="agnoster"
-DEFAULT_USER="yourusername"
+ZSH_THEME="agnoster-pyenv"
 ```
+## R
+```
+#graphics for R
+brew cask install xquartz
+#R
+brew install r
+
+#Rstudio
+brew cask install --appdir=/Applications rstudio
+```
+
+## Python
+```
+#pyenv + python
+brew install pyenv
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+#restart shell
+exec "$SHELL"
+
+#python build dependencies
+brew install openssl readline sqlite3 xz zlib
+
+#install python
+pyenv install 3.8.5
+pyenv global 3.8.5
+
+#poetry package management
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+#Jupyter
+python -m pip install jupyter
+```
+
+#Jekyll
+gem install --user-install bundler jekyll
+
+```
+
 
 ## Configure shell to use zsh, *type this line in your iTerm2 shell*
 
@@ -146,8 +161,8 @@ alias edit="atom -nw"
 ## Configure git
 
 ```zsh
-git config --global user.name "Your Name Here"
-git config --global user.email "your_email@youremail.com"
+git config --global user.name "Tom Liptrot"
+git config --global user.email "tom@ortom.co.uk"
 
 git config --global credential.helper osxkeychain
 
@@ -157,21 +172,7 @@ git config --global alias.st status
 #see all default oh-my-zsh git aliases https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet#git
 ```
 
-## Install NodeJS
 
-### Install [NVM](https://github.com/creationix/nvm), *to manage multiple NodeJS versions*
-
-```zsh
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-```
- 
-### Restart iTerm2, *or `touch ~/.zshrc`*
-
-### Install NodeJS LTS, *latest long term supported version*
- 
-```zsh
-nvm install --lts
-```
 
 ## Configure Docker *using HyperKit (xhyve)*
 
@@ -181,21 +182,6 @@ brew cask install docker
 docker run hello-world
 ```
 
-**or**
-
-## Configure Docker *using virtualbox*
-
-```zsh
-brew cask install virtualbox
-
-brew install docker docker-machine docker-compose
-
-docker-machine create -d virtualbox default
-
-eval "$(docker-machine env default)"
-
-docker run hello-world
-```
 
 ## Manage your dotFiles using git, *[because you may want to review history one day](http://dotfiles.github.io/)*
 
